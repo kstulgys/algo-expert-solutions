@@ -1,5 +1,7 @@
 function getMovieTitles(substr) {
-  function getTitles() {}
+  function getTitles() {
+    
+  }
   https
     .get(`https://jsonmock.hackerrank.com/api/movies/search/?Title=${substr}`, res => {
       console.log('statusCode:', res.statusCode)
