@@ -16,17 +16,30 @@ function solution(N, A) {
 
   // make array of 0
   // loop through A and change array(0)[]
-  let maxNum = 0;
-  let countersArray = [];
+  let countersArray = Array(N).fill(0);
+  let currentMax = 0;
+  let startLine = 0;
 
   A.forEach((counterIdx, idx) => {
+    let x = counterIdx - 1;
     if (counterIdx <= N) {
-      countersArray[counterIdx - 1] = countersArray[counterIdx - 1] + 1 || 1;
-      if (countersArray[counterIdx - 1] > maxNum) {
-        maxNum = countersArray[counterIdx - 1];
+      if (startLine > countersArray[x]) {
+        countersArray[x] = startLine + 1;
+      } else {
+        countersArray[x] += 1;
       }
-    } else if (counterIdx === N + 1) {
-      countersArray = Array(N).fill(maxNum);
+
+      if (countersArray[x] > currentMax) {
+        currentMax = countersArray[x];
+      }
+    } else if (counterIdx > N) {
+      startLine = currentMax;
+    }
+  });
+
+  countersArray.forEach((el, i) => {
+    if (el < startLine) {
+      countersArray[i] = startLine;
     }
   });
 
