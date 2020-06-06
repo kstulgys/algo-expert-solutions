@@ -3,7 +3,7 @@ function longestSum(array) {
   let globalSum = 0;
 
   array.forEach((el, i) => {
-    currentSum = Math.max(0, currentSum + el);
+    currentSum = Math.max(el, currentSum + el);
     globalSum = Math.max(globalSum, currentSum);
   });
 
